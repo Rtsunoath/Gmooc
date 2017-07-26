@@ -45,5 +45,5 @@ class Banner(models.Model):
     title = models.CharField(max_length=100, verbose_name=u'标题')
     image = models.ImageField(max_length=100, upload_to='banner/%Y/m', verbose_name=u'轮播图')
     url = models.CharField(max_length=200, verbose_name=u'访问地址')
-    index = models.IntegerField(max_length=10, default=100, verbose_name=u'顺序')
+    index = models.IntegerField(default=100, verbose_name=u'顺序')
     add_time = models.DateField(default=datetime.now, verbose_name=u'添加时间')
