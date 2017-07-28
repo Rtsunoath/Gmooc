@@ -14,7 +14,7 @@ class UserProfile(AbstractUser):
     birday = models.DateField(max_length=20, null=True, blank=True, verbose_name=u'生日')
     gender = models.CharField(max_length=6, choices=(("male", u"男"), ("female", u"女")), verbose_name=u'性别')
     address = models.CharField(max_length=100, default=u'', verbose_name=u'地址')
-    moblie = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'手机号')
+    mobile = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'手机号')
     images = models.ImageField(max_length=100, upload_to='image/%Y/%m', default='image/default.png', verbose_name=u'头像')
 
     class Meta():
@@ -31,6 +31,7 @@ class EmailVerifyRecord(models.Model):
     send_type = models.CharField(max_length=30,
                                  choices=(("register", u"注册"), ("forget", u"忘记密码"), ("up_date_email", u"修改邮箱")),
                                  verbose_name=u"验证码类型")
+    send_time = models.DateField(max_length=20, verbose_name=u"发送时间", default=datetime.now)
     add_time = models.DateField(max_length=20, verbose_name=u"发送时间", default=datetime.now)
 
     class Meta():
