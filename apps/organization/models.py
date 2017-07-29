@@ -37,6 +37,13 @@ class CourseOrg(models.Model):
     city = models.ForeignKey(CityDict, verbose_name=u'城市')
     add_time = models.DateField(default=datetime.now, verbose_name=u'添加时间')
 
+    class Meta:
+        verbose_name = u"机构"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.name
+
 
 class Teacher(models.Model):
     org = models.ForeignKey(CourseOrg, verbose_name=u'所属机构')
