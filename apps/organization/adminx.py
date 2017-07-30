@@ -7,7 +7,7 @@ from organization.models import CityDict, CourseOrg, Teacher
 
 class CityDictAdmin(object):
     list_display = ['name', 'desc', 'add_time']
-    search_type = ['name', 'desc']
+    search_fields = ['name', 'desc']
     list_filter = ['name', 'desc', 'add_time']
 
 

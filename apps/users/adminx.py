@@ -7,7 +7,7 @@ from users.models import UserProfile, EmailVerifyRecord, Banner
 
 class EmailVerifyRecordAdmin(object):
     list_display = ['code', 'email', 'send_type', 'send_time']
-    search_type = ['code', 'email', 'send_type']
+    search_fields = ['code', 'email', 'send_type']
     list_filter = ['code', 'email', 'send_type', 'send_time']
 
 
