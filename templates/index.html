@@ -17,42 +17,51 @@
 <section class="headerwrap ">
     <header>
         <div class=" header">
-            <div class="top">
-                <div class="wp">
-                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>
-                    <!--登录后跳转-->
 
+            {% if request.user.is_authenticated %}
+                <div class="top">
+                    <div class="wp">
+                        <div class="fl"><p>服务电话：<b>33333333</b></p></div>
 
-                    <div class="personal">
-                        <a style="color:white" class="fr registerbtn" href="register.html">注册</a>
-                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
-                        {#                        <dl class="user fr">#}
-                        {#                            <dd>bobby<img class="down fr" src="/static/images/top_down.png"/></dd>#}
-                        {#                            <dt><img width="20" height="20" src="/media/image/2016/12/default_big_14.png"/></dt>#}
-                        {#                        </dl>#}
-                        {#                        <div class="userdetail">#}
-                        {#                            <dl>#}
-                        {#                                <dt><img width="80" height="80" src="/media/image/2016/12/default_big_14.png"/></dt>#}
-                        {#                                <dd>#}
-                        {#                                    <h2>django</h2>#}
-                        {#                                    <p>bobby</p>#}
-                        {#                                </dd>#}
-                        {#                            </dl>#}
-                        {#                            <div class="btn">#}
-                        {#                                                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>#}
-                        {#                                                                <a class="fr" href="/logout/">退出</a>#}
-                        {#                              #}
-                        {#                            </div>#}
-                        {#                        </div>#}
+                        <div class="personal">
+
+                            <dl class="user fr">
+                                <dd>bobby<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dt><img width="20" height="20" src="/static/media/image/2016/12/default_big_14.png"/>
+                                </dt>
+                            </dl>
+                            <div class="userdetail">
+                                <dl>
+                                    <dt><img width="80" height="80"
+                                             src="/static/media/image/2016/12/default_big_14.png"/></dt>
+                                    <dd>
+                                        <h2>django</h2>
+                                        <p>bobby</p>
+                                    </dd>
+                                </dl>
+                                <div class="btn">
+                                    <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>
+                                    <a class="fr" href="/logout/">退出</a>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
                 </div>
-            </div>
+            {% else %}
 
+                <div class="top">
+                    <div class="wp">
+                        <a style="color:white" class="fr registerbtn" href="{% url 'regist' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
+                    </div>
+                </div>
+
+
+            {% endif %}
             <div class="middle">
                 <div class="wp">
-                    <a href="index.html"><img class="fl" src="/static/images/logo.jpg"/></a>
+                    <a href="{% url 'index' %}"><img class="fl" src="/static/images/logo.jpg"/></a>
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="course">
@@ -75,7 +84,7 @@
                 <div class="nav">
                     <div class="wp">
                         <ul>
-                            <li class="active"><a href="index.html">首页</a></li>
+                            <li class="active"><a href="{% url 'index' %}">首页</a></li>
                             <li>
                                 <a href="course-list.html">
                                     公开课<img class="hot" src="/static/images/nav_hot.png">
@@ -104,34 +113,36 @@
 
                     <li>
                         <a href="http://www.imooc.com">
-                            <img width="1200" height="478" src="/media/banner/2016/11/57a801860001c34b12000460.jpg"/>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="http://www.projectsedu.com">
-                            <img width="1200" height="478" src="/media/banner/2016/11/57aa86a0000145c512000460.jpg"/>
+                            <img width="1200" height="478"
+                                 src="/static/media/banner/2016/11/57a801860001c34b12000460.jpg"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/media/banner/2016/11/57a801860001c34b12000460_z4Vb8zl.jpg"/>
+                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460.jpg"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/media/banner/2016/11/57aa86a0000145c512000460_nMwvoQD.jpg"/>
+                                 src="/static/media/banner/2016/11/57a801860001c34b12000460_z4Vb8zl.jpg"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/media/banner/2016/11/57aa86a0000145c512000460_GXIBATC.jpg"/>
+                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460_nMwvoQD.jpg"/>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="http://www.projectsedu.com">
+                            <img width="1200" height="478"
+                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460_GXIBATC.jpg"/>
                         </a>
                     </li>
 
@@ -189,13 +200,15 @@
 
                                 <li>
                                     <a href="course-detail.html">
-                                        <img width="470" height="300" src="/media/courses/2016/12/python文件处理.jpg"/>
+                                        <img width="470" height="300"
+                                             src="/static/media/courses/2016/12/python文件处理.jpg"/>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="course-detail.html">
-                                        <img width="470" height="300" src="/media/courses/2016/12/python面向对象.jpg"/>
+                                        <img width="470" height="300"
+                                             src="/static/media/courses/2016/12/python面向对象.jpg"/>
                                     </a>
                                 </li>
 
@@ -207,7 +220,7 @@
 
                     <div class="module1_3 box">
                         <a href="course-detail.html">
-                            <img width="233" height="190" src="/media/courses/2016/11/mysql.jpg"/>
+                            <img width="233" height="190" src="/static/media/courses/2016/11/mysql.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -225,7 +238,7 @@
                     <div class="module1_4 box">
                         <a href="course-detail.html">
                             <img width="233" height="190"
-                                 src="/media/courses/2016/11/57035ff200014b8a06000338-240-135.jpg"/>
+                                 src="/static/media/courses/2016/11/57035ff200014b8a06000338-240-135.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -243,7 +256,7 @@
                     <div class="module1_5 box">
                         <a href="course-detail.html">
                             <img width="233" height="190"
-                                 src="/media/courses/2016/11/540e57300001d6d906000338-240-135.jpg"/>
+                                 src="/static/media/courses/2016/11/540e57300001d6d906000338-240-135.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -261,7 +274,7 @@
                     <div class="module1_6 box">
                         <a href="course-detail.html">
                             <img width="233" height="190"
-                                 src="/media/courses/2016/11/57035ff200014b8a06000338-240-135_dHfj8Nq.jpg"/>
+                                 src="/static/media/courses/2016/11/57035ff200014b8a06000338-240-135_dHfj8Nq.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -279,7 +292,7 @@
                     <div class="module1_7 box">
                         <a href="course-detail.html">
                             <img width="233" height="190"
-                                 src="/media/courses/2016/11/57035ff200014b8a06000338-240-135_0nFiBSI.jpg"/>
+                                 src="/static/media/courses/2016/11/57035ff200014b8a06000338-240-135_0nFiBSI.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -297,7 +310,7 @@
                     <div class="module1_8 box">
                         <a href="course-detail.html">
                             <img width="233" height="190"
-                                 src="/media/courses/2016/11/540e57300001d6d906000338-240-135_MSIqfvw.jpg"/>
+                                 src="/static/media/courses/2016/11/540e57300001d6d906000338-240-135_MSIqfvw.jpg"/>
                         </a>
                         <div class="des">
                             <a href="course-detail.html">
@@ -333,7 +346,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -347,7 +360,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/bjdx.jpg"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/bjdx.jpg"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -361,7 +374,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/qhdx-logo.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/qhdx-logo.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -375,7 +388,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/njdx.jpg"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/njdx.jpg"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -389,7 +402,7 @@
                         <li class="five">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_klgAUn5.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_klgAUn5.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -403,7 +416,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_Gn1sRjp.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_Gn1sRjp.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -417,7 +430,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_Y2Tonsq.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_Y2Tonsq.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -431,7 +444,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_OO2ykYP.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_OO2ykYP.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -445,7 +458,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_V0TJOyb.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_V0TJOyb.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -459,7 +472,7 @@
                         <li class="five">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/11/imooc_qEaMov1.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/11/imooc_qEaMov1.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -473,7 +486,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/12/bjdx.jpg"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/12/bjdx.jpg"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -487,7 +500,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/12/imooc_Gn1sRjp.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/12/imooc_Gn1sRjp.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -501,7 +514,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/12/bjdx_cCpdUw8.jpg"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/12/bjdx_cCpdUw8.jpg"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -515,7 +528,7 @@
                         <li class="">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/12/imooc_klgAUn5.png"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/12/imooc_klgAUn5.png"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>
@@ -529,7 +542,7 @@
                         <li class="five">
                             <a href="org-detail-homepage.html">
                                 <div class="company">
-                                    <img width="184" height="100" src="/media/org/2016/12/bjdx_bcd0m07.jpg"/>
+                                    <img width="184" height="100" src="/static/media/org/2016/12/bjdx_bcd0m07.jpg"/>
                                     <div class="score">
                                         <div class="circle">
                                             <h2>全国知名</h2>

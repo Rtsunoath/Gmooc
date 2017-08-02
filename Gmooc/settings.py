@@ -27,6 +27,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomModelBackend',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -129,4 +132,4 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
