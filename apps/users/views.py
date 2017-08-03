@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.hashers import make_password
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
@@ -10,7 +11,7 @@ from django.views.generic.base import View
 from django.db.models import Q
 
 from users.models import UserProfile
-from users.forms import LoginForms
+from users.forms import LoginForm, RegistForm
 
 
 # Create your views here.
@@ -33,7 +34,7 @@ class LoginView(View):
         user_name = request.POST.get("username", "")
         pass_word = request.POST.get("password", "")
         user = authenticate(username=user_name, password=pass_word)
-        login_form = LoginForms(request.POST)
+        login_form = LoginForm(request.POST)
         if login_form.is_valid():
             if user is not None:
                 if user.is_active:
@@ -49,7 +50,21 @@ class LoginView(View):
 
 class RegistView(View):
     def get(self, request):
-        return render(request, 'register.html', {})
+        register_form = RegistForm()
+        return render(request, 'register.html', {'register_form': register_form})
 
     def post(self, request):
-        pass
+        register_form = RegistForm(request.POST)
+        if register_form.is_valid():
+            user_name = request.POST.get("email", "")
+            user = UserProfile.objects.filter(user_name)
+            if user:
+                return render(request, "register.html", {"register_form": register_form, "msg": "用户已经存在"})
+            pass_word = request.POST.get("password", "")
+            user_profile = UserProfile()
+            user_profile.username = user_name
+            user_profile.email = user_name
+            user_profile.password = make_password(pass_word)
+            user_profile.is_active = False
+            user_profile.save()
+            pass
